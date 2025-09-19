@@ -1,0 +1,59 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.name {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+.profile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+}
+
+.portrait {
+    width: 280px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.bio {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.artworks {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.artwork {
+    text-align: center;
+}
+
+.artImage {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+}
+
+.artInfo {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.4;
+}
