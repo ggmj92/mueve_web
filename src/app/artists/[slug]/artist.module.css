@@ -1,59 +1,84 @@
 .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
+    padding: calc(70px + 2rem) 0 2rem;
+    /* no side padding; the carousel handles margins */
+}
+
+/* Below-the-fold info section under the carousel */
+.info {
+    padding: 1.5rem var(--edge) 3rem var(--edge);
+    /* keep cards gap consistent across sections */
+    --cards-gap: 1rem;
+}
+
+.infoRow {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    /* left padding inherited from .info; right aligns to page edge */
+    padding-right: 0;
+    gap: 1rem;
 }
 
 .name {
+    /* keep in normal flow and prevent wrapping */
+    white-space: nowrap;
     font-size: 2rem;
-    text-align: center;
-    margin-bottom: 3rem;
     font-weight: 400;
+    letter-spacing: 0.02em;
+    margin: 0 0 0.75rem 0;
 }
 
-.profile {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    align-items: flex-start;
-    margin-bottom: 4rem;
-}
-
-.portrait {
-    width: 280px;
-    height: auto;
-    border-radius: 4px;
-    object-fit: cover;
-    flex-shrink: 0;
+.portfolio {
+    text-decoration: underline;
+    font-size: 2rem;
+    /* align left edge with the 5th card's left edge */
+    /* card width for 5-up: (viewport - edges - 4 gaps) / 5 */
+    margin-left: calc(((79vw - (2 * var(--edge)) - (4 * var(--cards-gap))) / 5 + var(--cards-gap)) * 4);
+    white-space: nowrap;
 }
 
 .bio {
-    flex: 1;
-    font-size: 1rem;
-    line-height: 1.6;
+    max-width: 68ch;
+    margin: 0.25rem 0 0 0;
+    line-height: 1.45;
     color: #333;
 }
 
-.artworks {
+/* Cards row */
+.cardsSection {
+    padding: 2rem 0 3rem;
+}
+
+.cards {
+    --cards-gap: 1rem; /* ensure var is defined for width calcs */
     display: flex;
-    flex-direction: column;
-    gap: 3rem;
+    gap: var(--cards-gap);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 var(--edge);
 }
 
-.artwork {
-    text-align: center;
+.card {
+    scroll-snap-align: start;
+    flex: 0 0 calc((100vw - (2 * var(--edge)) - (4 * var(--cards-gap))) / 5);
+    aspect-ratio: 3 / 4; /* portrait tile */
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.artImage {
+.cardImage {
     width: 100%;
-    max-width: 600px;
-    height: auto;
-    object-fit: cover;
-    margin-bottom: 0.5rem;
+    height: 100%;
+    object-fit: cover; /* keep portrait feel */
 }
 
-.artInfo {
-    font-size: 0.95rem;
-    color: #444;
-    line-height: 1.4;
+@media (max-width: 900px) {
+    .card { flex-basis: calc((100vw - (2 * var(--edge)) - (3 * var(--cards-gap))) / 4); }
+}
+
+@media (max-width: 600px) {
+    .card { flex-basis: calc((100vw - (2 * var(--edge)) - (2 * var(--cards-gap))) / 3); }
 }
