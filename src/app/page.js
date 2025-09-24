@@ -1,39 +1,49 @@
-import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
-import HeroCarousel from "@/components/HeroCarousel";
-import styles from "./page.module.css";
+import { client } from '@/sanity/lib/client'
+import { urlFor } from '@/sanity/lib/image'
+import HeroCarousel from '@/components/HeroCarousel'
+import styles from './page.module.css'
 
 async function getHomepageSlides() {
-  const data = await client.fetch(`*[_type == "homepage"][0]{
+  const data = await client
+    .fetch(
+      `*[_type == "homepage"][0]{
     slides[]{ image, caption, durationMs, position }
-  }`).catch(() => null);
+  }`
+    )
+    .catch(() => null)
 
   let slides = (data?.slides || [])
     .map((s) => ({
-      url: s?.image ? urlFor(s.image).width(2400).quality(85).auto("format").url() : null,
-      caption: s?.caption || "",
+      url: s?.image
+        ? urlFor(s.image).width(2400).quality(85).auto('format').url()
+        : null,
+      caption: s?.caption || '',
       durationMs: s?.durationMs || 5000,
-      position: s?.position || "center",
+      position: s?.position || 'center',
     }))
-    .filter((s) => !!s.url);
+    .filter((s) => !!s.url)
 
   if (slides.length === 0) {
     slides = [
-      { url: "/background.jpg", caption: "", durationMs: 5000, position: "center" },
-      { url: "/vercel.svg", caption: "", durationMs: 5000, position: "center" }, 
-    ];
+      {
+        url: '/background.jpg',
+        caption: '',
+        durationMs: 5000,
+        position: 'center',
+      },
+      { url: '/vercel.svg', caption: '', durationMs: 5000, position: 'center' },
+    ]
   }
 
-  return slides;
+  return slides
 }
 
 export default async function Home() {
-  const slides = await getHomepageSlides();
+  const slides = await getHomepageSlides()
 
   return (
     <main className={styles.homeWrap}>
       <HeroCarousel slides={slides} />
     </main>
-  );
+  )
 }
-

@@ -1,84 +1,94 @@
 .container {
-    padding: calc(70px + 2rem) 0 2rem;
-    /* no side padding; the carousel handles margins */
+  padding: calc(70px + 2rem) 0 2rem;
+  /* no side padding; the carousel handles margins */
 }
 
 /* Below-the-fold info section under the carousel */
 .info {
-    padding: 1.5rem var(--edge) 3rem var(--edge);
-    /* keep cards gap consistent across sections */
-    --cards-gap: 1rem;
+  padding: 1.5rem var(--edge) 3rem var(--edge);
+  /* keep cards gap consistent across sections */
+  --cards-gap: 1rem;
 }
 
 .infoRow {
-    display: flex;
-    align-items: baseline;
-    justify-content: flex-start;
-    /* left padding inherited from .info; right aligns to page edge */
-    padding-right: 0;
-    gap: 1rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  /* left padding inherited from .info; right aligns to page edge */
+  padding-right: 0;
+  gap: 1rem;
 }
 
 .name {
-    /* keep in normal flow and prevent wrapping */
-    white-space: nowrap;
-    font-size: 2rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    margin: 0 0 0.75rem 0;
+  /* keep in normal flow and prevent wrapping */
+  white-space: nowrap;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.75rem 0;
 }
 
 .portfolio {
-    text-decoration: underline;
-    font-size: 2rem;
-    /* align left edge with the 5th card's left edge */
-    /* card width for 5-up: (viewport - edges - 4 gaps) / 5 */
-    margin-left: calc(((79vw - (2 * var(--edge)) - (4 * var(--cards-gap))) / 5 + var(--cards-gap)) * 4);
-    white-space: nowrap;
+  text-decoration: underline;
+  font-size: 2rem;
+  /* align left edge with the 5th card's left edge */
+  /* card width for 5-up: (viewport - edges - 4 gaps) / 5 */
+  margin-left: calc(
+    (
+        (79vw - (2 * var(--edge)) - (4 * var(--cards-gap))) / 5 +
+          var(--cards-gap)
+      ) *
+      4
+  );
+  white-space: nowrap;
 }
 
 .bio {
-    max-width: 68ch;
-    margin: 0.25rem 0 0 0;
-    line-height: 1.45;
-    color: #333;
+  max-width: 68ch;
+  margin: 0.25rem 0 0 0;
+  line-height: 1.45;
+  color: #333;
 }
 
 /* Cards row */
 .cardsSection {
-    padding: 2rem 0 3rem;
+  padding: 2rem 0 3rem;
 }
 
 .cards {
-    --cards-gap: 1rem; /* ensure var is defined for width calcs */
-    display: flex;
-    gap: var(--cards-gap);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 var(--edge);
+  --cards-gap: 1rem; /* ensure var is defined for width calcs */
+  display: flex;
+  gap: var(--cards-gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 var(--edge);
 }
 
 .card {
-    scroll-snap-align: start;
-    flex: 0 0 calc((100vw - (2 * var(--edge)) - (4 * var(--cards-gap))) / 5);
-    aspect-ratio: 3 / 4; /* portrait tile */
-    background: #f5f5f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  scroll-snap-align: start;
+  flex: 0 0 calc((100vw - (2 * var(--edge)) - (4 * var(--cards-gap))) / 5);
+  aspect-ratio: 3 / 4; /* portrait tile */
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cardImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* keep portrait feel */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* keep portrait feel */
 }
 
 @media (max-width: 900px) {
-    .card { flex-basis: calc((100vw - (2 * var(--edge)) - (3 * var(--cards-gap))) / 4); }
+  .card {
+    flex-basis: calc((100vw - (2 * var(--edge)) - (3 * var(--cards-gap))) / 4);
+  }
 }
 
 @media (max-width: 600px) {
-    .card { flex-basis: calc((100vw - (2 * var(--edge)) - (2 * var(--cards-gap))) / 3); }
+  .card {
+    flex-basis: calc((100vw - (2 * var(--edge)) - (2 * var(--cards-gap))) / 3);
+  }
 }

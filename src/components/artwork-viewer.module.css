@@ -15,15 +15,26 @@
 .info {
   /* Keep the info fixed at the exact spot during scroll */
   position: fixed;
-  top: var(--info-top, var(--header-h, 70px)); /* align to measured artwork top */
-  left: var(--edge, 2rem);    /* align with page left edge */
+  top: var(
+    --info-top,
+    var(--header-h, 70px)
+  ); /* align to measured artwork top */
+  left: var(--edge, 2rem); /* align with page left edge */
   width: min(22ch, 30vw);
   z-index: 2;
 }
 
-.artist { font-weight: 500; margin-bottom: 0.5rem; }
-.workTitle { margin-bottom: 0.35rem; }
-.row { color: #444; margin-bottom: 0.25rem; }
+.artist {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.workTitle {
+  margin-bottom: 0.35rem;
+}
+.row {
+  color: #444;
+  margin-bottom: 0.25rem;
+}
 
 /* Stage in right column, top-aligned, centered horizontally */
 .stage {
@@ -35,22 +46,29 @@
 
 .artBox {
   /* Top-aligned box that participates in layout */
-  margin-left: calc(var(--edge, 2rem) + var(--col1, 300px) + var(--gap12, 0.5rem));
+  margin-left: calc(
+    var(--edge, 2rem) + var(--col1, 300px) + var(--gap12, 0.5rem)
+  );
   margin-right: auto;
   /* Width such that box is centered relative to the page while left edge stays at col 2 */
-  width: clamp(520px,
-               calc(2 * (50vw - (var(--edge, 2rem) + var(--col1, 300px) + var(--gap12, 0.5rem)))),
-               1120px);
+  width: clamp(
+    520px,
+    calc(
+      2 *
+        (50vw - (var(--edge, 2rem) + var(--col1, 300px) + var(--gap12, 0.5rem)))
+    ),
+    1120px
+  );
   max-width: calc(100% - 2 * var(--edge, 2rem));
-  display: flex;               /* center child horizontally */
+  display: flex; /* center child horizontally */
   justify-content: center;
 }
 
 .art {
   display: block;
   margin: 0 auto;
-  width: 100%;           /* always fill the artBox width */
-  height: auto;          /* preserve aspect ratio */
+  width: 100%; /* always fill the artBox width */
+  height: auto; /* preserve aspect ratio */
   object-fit: contain;
   object-position: top center; /* top aligns with name */
 }
@@ -68,8 +86,12 @@
   z-index: 10;
 }
 
-.left { left: var(--edge, 2rem); }
-.right { right: var(--edge, 2rem); }
+.left {
+  left: var(--edge, 2rem);
+}
+.right {
+  right: var(--edge, 2rem);
+}
 
 /* Long description below stage */
 .description {
@@ -77,16 +99,24 @@
   grid-column: 1 / -1;
   width: 640px; /* matches about.module.css .container max-width */
   margin-top: 10rem; /* vertical gap below artwork */
-  margin-left: calc(var(--edge, 2rem) + var(--col1, 300px) + var(--gap12, 0.5rem)); /* same as .artBox left */
+  margin-left: calc(
+    var(--edge, 2rem) + var(--col1, 300px) + var(--gap12, 0.5rem)
+  ); /* same as .artBox left */
   margin-right: auto;
-  font-size: 14px;      /* match About page paragraph */
-  line-height: 1.2;     /* match About page paragraph */
-  color: #444;          /* match About page paragraph */
-  white-space: pre-line;/* preserve line breaks like About */
+  font-size: 14px; /* match About page paragraph */
+  line-height: 1.2; /* match About page paragraph */
+  color: #444; /* match About page paragraph */
+  white-space: pre-line; /* preserve line breaks like About */
 }
 
 @media (max-width: 900px) {
-  .wrap { grid-template-columns: min(26ch, 38vw) 1.5rem 1fr; }
-  .artBox { width: min(70vw, 720px); }
-  .art { max-height: 60vh; }
+  .wrap {
+    grid-template-columns: min(26ch, 38vw) 1.5rem 1fr;
+  }
+  .artBox {
+    width: min(70vw, 720px);
+  }
+  .art {
+    max-height: 60vh;
+  }
 }
