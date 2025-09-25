@@ -20,13 +20,23 @@ export default function ArtistCarousel({ slides, interval = 7000 }) {
   if (!len) return null
 
   const slide = slides[i]
-  const isPortrait = slide.ar < 1 // ar < 1 means tall
+  const titleLine = slide.title ? (
+    <span>
+      <strong>{slide.title}</strong>
+      {slide.year ? `, ${slide.year}` : ''}
+    </span>
+  ) : null
+  const secondaryDetails = [
+    slide.title ? null : slide.year,
+    slide.technique,
+    slide.dims,
+  ].filter(Boolean)
+  const showControls = len > 1
+  const showMeta = Boolean(titleLine || secondaryDetails.length || showControls)
 
   return (
-    <section className={s.stage} aria-label="Artist artworks">
-      {/* image area */}
-      <div className={`${s.frame} ${isPortrait ? s.portrait : s.landscape}`}>
-        {/* Use plain <img> so no Next image domain config needed */}
+    <section className={s.carousel} aria-label="Artist artworks">
+      <div className={s.frame}>
         <img
           src={slide.url}
           alt={slide.title || 'Artwork'}
@@ -35,28 +45,32 @@ export default function ArtistCarousel({ slides, interval = 7000 }) {
         />
       </div>
 
-      {/* caption / meta */}
-      <div className={s.meta}>
-        <div className={s.metaInner}>
-          <span className={s.title}>
-            <strong>{slide.title}</strong>
-            {slide.year ? `, ${slide.year}` : ''}
-          </span>
-          {slide.technique ? <span>{slide.technique}</span> : null}
-          {slide.dims ? <span>{slide.dims}</span> : null}
+      {showMeta ? (
+        <div className={s.meta}>
+          {titleLine || secondaryDetails.length ? (
+            <div className={s.metaInfo}>
+              {titleLine}
+              {secondaryDetails.map((text, idx) => (
+                <span key={`${text}-${idx}`}>{text}</span>
+              ))}
+            </div>
+          ) : null}
+
+          {showControls ? (
+            <div className={s.controls}>
+              <button onClick={() => go(-1)} aria-label="Anterior">
+                ←
+              </button>
+              <span className={s.idx}>
+                {i + 1} / {len}
+              </span>
+              <button onClick={() => go(1)} aria-label="Siguiente">
+                →
+              </button>
+            </div>
+          ) : null}
         </div>
-        <div className={s.controls}>
-          <button onClick={() => go(-1)} aria-label="Previous">
-            ←
-          </button>
-          <span className={s.idx}>
-            {i + 1} / {len}
-          </span>
-          <button onClick={() => go(1)} aria-label="Next">
-            →
-          </button>
-        </div>
-      </div>
+      ) : null}
     </section>
   )
 }

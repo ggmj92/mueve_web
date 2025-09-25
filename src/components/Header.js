@@ -32,7 +32,7 @@ export default function Header() {
         </a>
         <button
           onClick={toggleNav}
-          className={`${styles.menuButton} ${navOpen ? styles.open : styles.closed}`}
+          className={`${styles.menuButton} ${navOpen ? styles.open : ''}`}
         >
           {navOpen ? '✕' : '☰'}
         </button>

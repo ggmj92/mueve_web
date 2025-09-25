@@ -1,6 +1,5 @@
 .container {
-  padding: calc(70px + 2rem) 0 2rem;
-  /* no side padding; the carousel handles margins */
+  padding: calc(var(--header-h) + 2rem) 0 2rem;
 }
 
 /* Below-the-fold info section under the carousel */
@@ -56,7 +55,8 @@
 }
 
 .cards {
-  --cards-gap: 1rem; /* ensure var is defined for width calcs */
+  --cards-gap: 1rem;
+  /* ensure var is defined for width calcs */
   display: flex;
   gap: var(--cards-gap);
   overflow-x: auto;
@@ -68,7 +68,8 @@
 .card {
   scroll-snap-align: start;
   flex: 0 0 calc((100vw - (2 * var(--edge)) - (4 * var(--cards-gap))) / 5);
-  aspect-ratio: 3 / 4; /* portrait tile */
+  aspect-ratio: 3 / 4;
+  /* portrait tile */
   background: #f5f5f5;
   display: flex;
   align-items: center;
@@ -78,7 +79,8 @@
 .cardImage {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* keep portrait feel */
+  object-fit: cover;
+  /* keep portrait feel */
 }
 
 @media (max-width: 900px) {
@@ -88,7 +90,40 @@
 }
 
 @media (max-width: 600px) {
+  .info {
+    padding-inline: var(--edge);
+  }
+
+  .infoRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .name,
+  .portfolio {
+    font-size: 1.6rem;
+  }
+
+  .portfolio {
+    margin-left: 0;
+  }
+
+  .bio {
+    margin-top: 1rem;
+  }
+
   .card {
     flex-basis: calc((100vw - (2 * var(--edge)) - (2 * var(--cards-gap))) / 3);
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    padding-inline: var(--edge);
+  }
+
+  .card {
+    flex-basis: calc((100vw - (2 * var(--edge)) - (1 * var(--cards-gap))) / 2);
   }
 }

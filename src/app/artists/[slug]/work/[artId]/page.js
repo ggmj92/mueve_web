@@ -26,7 +26,7 @@ export default async function ArtworkPage({ params }) {
   const artist = await getArtistWithWorks(slug)
   if (!artist)
     return (
-      <main style={{ padding: 'calc(70px + 2rem) var(--edge)' }}>
+      <main style={{ padding: 'calc(var(--header-h) + 2rem) var(--edge)' }}>
         Not found
       </main>
     )

@@ -1,72 +1,54 @@
-/* The stage occupies the viewport minus header & footer.
-   Read spacing from global CSS variables. Fallbacks keep it robust. */
-
-/* whole carousel area */
-.stage {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  /* image area, then meta (hidden for now) */
-  gap: 0;
+.carousel {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* image frame with horizontal centering; vertical bottom alignment */
 .frame {
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-end; /* always sit just above footer */
-  width: 100%;
-  height: 100%;
-  padding: var(--header-h, 70px) var(--edge, 2rem) var(--footer-h, 70px);
-  /* left/right margins match page elements */
+  align-items: flex-end;
+  padding: var(--header-h) var(--edge) var(--footer-h);
 }
 
-/* the image itself */
 .art {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* preserve aspect, fit within box */
-  object-position: bottom center; /* sit just above footer when at top */
+  max-width: 100%;
+  max-height: calc(100vh - var(--header-h) - var(--footer-h));
+  object-fit: contain;
+  object-position: bottom center;
 }
 
-/* All orientations: fit within viewport; bottom aligned by frame */
-.art {
-  max-height: calc(100vh - var(--header-h, 70px) - var(--footer-h, 70px));
-}
-
-/* meta row */
 .meta {
-  display: none;
-}
-
-.metaInner {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.5rem var(--edge) 2rem;
   font-size: 0.95rem;
   color: #111;
 }
 
-.title {
+.metaInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   letter-spacing: 0.01em;
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .controls button {
-  appearance: none;
   border: 1px solid #ddd;
   background: #fff;
   cursor: pointer;
   padding: 0.3rem 0.6rem;
   font-size: 1rem;
+  transition: background 0.2s ease;
 }
 
 .controls button:hover {
@@ -78,15 +60,50 @@
   font-size: 0.9rem;
 }
 
-/* Mobile: keep margins but tighten */
 @media (max-width: 768px) {
   .frame {
-    padding: 0 1rem;
+    padding: calc(var(--header-h) + 1rem) 1.25rem calc(var(--footer-h) + 2rem);
   }
+
   .meta {
-    padding: 0 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 1.25rem 2rem;
+    gap: 1rem;
   }
-  .metaInner {
-    gap: 0.6rem;
+
+  .metaInfo {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 540px) {
+  .carousel {
+    min-height: auto;
+  }
+
+  .frame {
+    align-items: center;
+    padding: calc(var(--header-h) + 0.5rem) 1rem calc(var(--footer-h) + 2.5rem);
+  }
+
+  .art {
+    max-height: 55vh;
+  }
+
+  .meta {
+    padding: 1.25rem 1rem 2rem;
+    font-size: 0.9rem;
+  }
+
+  .controls {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 }
