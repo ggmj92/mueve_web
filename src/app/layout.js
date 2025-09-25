@@ -26,16 +26,34 @@ export default function RootLayout({ children }) {
           <div className={styles.footerInner}>
             <div>
               <p>
-                Gral Borgoño 123, Miraflores
-                <br />
-                Lima, Perú
+                <a
+                  href="https://maps.app.goo.gl/g22oW8UUtikFqpVe7"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Gral Borgoño 123, Miraflores
+                  <br />
+                  Lima, Perú
+                </a>
               </p>
             </div>
             <div>
               <p>
-                info@mueve.com.pe
+                <a
+                  href="mailto:info@mueve.com.pe?subject=Consulta desde Mueve Web&body=Hola,%0D%0A%0D%0AMe gustaría saber más sobre..."
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  info@mueve.com.pe
+                </a>
                 <br />
-                +51 987 654 321
+                <a
+                  href="https://wa.me/51987654321?text=Hola,%20estoy%20interesado%20en..."
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  +51 987 654 321
+                </a>
               </p>
             </div>
             <div>
