@@ -5,10 +5,12 @@
   --header-h: 72px;
   --footer-h: 80px;
   --col1: 300px;
-  --gap12: 2.5rem;
-  --gap23: 11rem;
+  --footer-col-width: 300px;
+  --second-col-offset: 300px;
+  --gap12: calc(var(--second-col-offset) - var(--edge) - var(--col1));
+  --gap23: 0px;
   --nav-width: 300px;
-  --nav-padding-inline: 3.75rem;
+  --nav-padding-inline: 2.5rem;
   --nav-padding-block: 4.5rem;
   --nav-gap: 2.75rem;
   --nav-font-size: 1.5rem;
@@ -64,7 +66,7 @@ img {
 }
 
 .alignSecondCol {
-  margin-left: calc(var(--edge) + var(--col1) + var(--gap12)) !important;
+  margin-left: var(--second-col-offset) !important;
 }
 
 .is-home .logo,
@@ -84,9 +86,11 @@ img {
 @media (max-width: 1200px) {
   :root {
     --edge: 1.8rem;
-    --col1: 300px;
+    --col1: 280px;
+    --footer-col-width: 280px;
     --gap23: 9rem;
     --gap12: 1.25rem;
+    --second-col-offset: calc(var(--edge) + var(--col1) + var(--gap12));
     --nav-width: 380px;
     --nav-padding-inline: 3rem;
     --nav-padding-block: 4rem;
@@ -101,8 +105,10 @@ img {
     --header-h: 68px;
     --footer-h: 88px;
     --col1: 240px;
+    --footer-col-width: 240px;
     --gap23: 6rem;
     --gap12: 1rem;
+    --second-col-offset: calc(var(--edge) + var(--col1) + var(--gap12));
     --nav-width: 360px;
     --nav-padding-inline: 2.25rem;
     --nav-padding-block: 3.5rem;
@@ -117,6 +123,8 @@ img {
     --header-h: 64px;
     --footer-h: 96px;
     --col1: 200px;
+    --footer-col-width: 200px;
+    --second-col-offset: calc(var(--edge) + var(--col1) + var(--gap12));
     --nav-width: 100vw;
     --nav-padding-inline: 1.4rem;
     --nav-padding-block: calc(var(--header-h) + 1rem);
@@ -137,6 +145,8 @@ img {
     --footer-h: 104px;
     --col1: 0px;
     --gap12: 0.75rem;
+    --footer-col-width: auto;
+    --second-col-offset: calc(var(--edge) + var(--col1) + var(--gap12));
   }
 }
 
